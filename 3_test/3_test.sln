@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3_test", "3_test\3_test.csproj", "{D7E3EDB9-E123-40C7-95CE-86CE87D42612}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
+	ProjectSection(SolutionItems) = preProject
+		..\CinemaTicketSystem.dll = ..\CinemaTicketSystem.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTicketSystemTests", "CinemaTicketSystemTests\CinemaTicketSystemTests.csproj", "{BBFDA61F-BF27-4A6C-8342-756A6BE59848}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7E3EDB9-E123-40C7-95CE-86CE87D42612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E3EDB9-E123-40C7-95CE-86CE87D42612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E3EDB9-E123-40C7-95CE-86CE87D42612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E3EDB9-E123-40C7-95CE-86CE87D42612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBFDA61F-BF27-4A6C-8342-756A6BE59848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBFDA61F-BF27-4A6C-8342-756A6BE59848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBFDA61F-BF27-4A6C-8342-756A6BE59848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBFDA61F-BF27-4A6C-8342-756A6BE59848}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5543AC5E-F6E2-473B-A447-4DF04AC5B5B5}
+	EndGlobalSection
+EndGlobal
