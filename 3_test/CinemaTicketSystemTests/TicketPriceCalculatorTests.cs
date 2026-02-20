@@ -8,8 +8,20 @@ namespace CinemaTicketSystemTests
 {
     public class TicketPriceCalculatorTests
     {
-        //бесплатные билеты
-        [Fact]
+        
+        const int normalPrice = 300;
+        const int kidsPrice = (int)(normalPrice - (normalPrice * 0.4));
+        const int childsPrice = 0;
+        const int wednesdayPrice = (int)(normalPrice - (normalPrice * 0.3));
+        const int morningPrice = (int)(normalPrice - (normalPrice * 0.15));
+        const int studentsPrice = (int)(normalPrice - (normalPrice * 0.2));
+        const int oldPrice =(int) (normalPrice - (normalPrice * 0.5));
+        const int VipPrice = 600;
+        const int VipPriceSubkidsDiscount = (int)(VipPrice - (VipPrice * 0.4));
+        const int vipPriceSubWednesdayDiscount = (int)(VipPrice - (VipPrice * 0.3));
+        const int VipPriceSubOldPrice =(int) (VipPrice - (VipPrice*0.5));
+       //бесплатные билеты
+       [Fact]
         public void CalculatePrice_ShouldReturnZero_ForChildUnder6()
         {
             TicketRequest request = new TicketRequest { 
@@ -21,12 +33,12 @@ namespace CinemaTicketSystemTests
             };
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
-
-            Assert.Equal(0, result);
+            
+            Assert.Equal(childsPrice, result);
         }
         //детские билеты
         [Fact]
-        public void CalculatePrice_ShouldReturn180_ForAge10()
+        public void CalculatePrice_ShouldReturnKidsPrice_ForAge10()
         {
             TicketRequest request = new TicketRequest
             {
@@ -39,7 +51,7 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(180, result);
+            Assert.Equal(kidsPrice, result);
         }
         //обычный билет без скидок
         [Fact]
@@ -56,11 +68,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(300, result);
+            Assert.Equal(normalPrice, result);
         }
         //студенческая скидка
         [Fact]
-        public void CalculatePrice_ShouldReturn240_ForStudents()
+        public void CalculatePrice_ShouldReturnStudentsPrice_ForStudents()
         {
             TicketRequest request = new TicketRequest
             {
@@ -73,11 +85,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(240, result);
+            Assert.Equal(studentsPrice, result);
         }
         //30 летний студент
         [Fact]
-        public void CalculatePrice_ShouldReturn240_ForStudentAge30()
+        public void CalculatePrice_ShouldReturnStudentsPrice_ForStudentAge30()
         {
             TicketRequest request = new TicketRequest
             {
@@ -90,11 +102,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(300, result);
+            Assert.Equal(normalPrice, result);
         }
         //скидка по средам
         [Fact]
-        public void CalculatePrice_ShouldReturn210_InWednesday()
+        public void CalculatePrice_ShouldReturnWednesdayPrice_InWednesday()
         {
             TicketRequest request = new TicketRequest
             {
@@ -107,11 +119,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(210, result);
+            Assert.Equal(wednesdayPrice, result);
         }
         //утренняя скидка
         [Fact]
-        public void CalculatePrice_ShouldReturn255_InMorning()
+        public void CalculatePrice_ShouldReturnMorningPrice_InMorning()
         {
             TicketRequest request = new TicketRequest
             {
@@ -124,11 +136,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(255, result);
+            Assert.Equal(morningPrice, result);
         }
         //VIP-билет
         [Fact]
-        public void CalculatePrice_ShouldReturn600_ForVip()
+        public void CalculatePrice_ShouldReturnVipPrice_ForVip()
         {
             TicketRequest request = new TicketRequest
             {
@@ -141,11 +153,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(600, result);
+            Assert.Equal(VipPrice, result);
         }
         //VIP-билет со временной скидкой
         [Fact]
-        public void CalculatePrice_ShouldReturn420_ForVipInWednesday()
+        public void CalculatePrice_ShouldReturnVipPriceSubWednesdayDiscount_ForVipInWednesday()
         {
             TicketRequest request = new TicketRequest
             {
@@ -158,11 +170,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(420, result);
+            Assert.Equal(vipPriceSubWednesdayDiscount, result);
         }
         //VIP-билет пенсионер
         [Fact]
-        public void CalculatePrice_ShouldReturn600_ForVipAge70()
+        public void CalculatePrice_ShouldReturnVipPriceSubOldPrice_ForVipAge70()
         {
             TicketRequest request = new TicketRequest
             {
@@ -175,11 +187,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(300, result);
+            Assert.Equal(VipPriceSubOldPrice, result);
         }
         //VIP-билет ребенок
         [Fact]
-        public void CalculatePrice_ShouldReturn600_ForVipAge10()
+        public void CalculatePrice_ShouldReturnVipPriceSubkidsDiscount_ForVipAndAge10()
         {
             TicketRequest request = new TicketRequest
             {
@@ -192,7 +204,7 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(360, result);
+            Assert.Equal(VipPriceSubkidsDiscount, result);
         }
         //VIP-билет младенец
         [Fact]
@@ -209,11 +221,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(0, result);
+            Assert.Equal(childsPrice, result);
         }
 
         [Fact]
-        public void CalculatePrice_ShouldReturn150_ForOld70()
+        public void CalculatePrice_ShouldReturnOldsPrice_ForOld70()
         {
             TicketRequest request = new TicketRequest
             {
@@ -226,11 +238,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(150, result);
+            Assert.Equal(oldPrice, result);
         }
         //применение максимальной скидки
         [Fact]
-        public void CalculatePrice_ShouldReturn240_ForStudentInMorning()
+        public void CalculatePrice_ShouldReturnStudentsPrice_ForStudentInMorning()
         {
             TicketRequest request = new TicketRequest
             {
@@ -243,13 +255,13 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(240, result);
+            Assert.Equal(studentsPrice, result);
         }
 
         /////////////////////////////////ГРАНИЧНЫЕ/////////////////////////////////
         //Возраст 0
         [Fact]
-        public void CalculatePrice_ShouldReturnException_ForAge0()
+        public void CalculatePrice_ShouldReturnChildPrice_ForAge0()
         {
             TicketRequest request = new TicketRequest
             {
@@ -263,11 +275,11 @@ namespace CinemaTicketSystemTests
 
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(0, result);
+            Assert.Equal(childsPrice, result);
         }
         //Возраст 120
         [Fact]
-        public void CalculatePrice_ShouldReturnException_ForAge120()
+        public void CalculatePrice_ShouldReturnOldPrice_ForAge120()
         {
             TicketRequest request = new TicketRequest
             {
@@ -280,12 +292,12 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(150, result);
+            Assert.Equal(oldPrice, result);
         }
 
         //беслатные билеты
         [Fact]
-        public void CalculatePrice_ShouldReturnZero_ForAge5()
+        public void CalculatePrice_ShouldReturnchildPrice_ForAge5()
         {
             TicketRequest request = new TicketRequest
             {
@@ -298,12 +310,12 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(0, result);
+            Assert.Equal(childsPrice, result);
         }
        
         //детская скидка
         [Fact]
-        public void CalculatePrice_ShouldReturn240_ForChildsAge17()
+        public void CalculatePrice_ShouldReturnKidsPrice_ForChildsAge17()
         {
             TicketRequest request = new TicketRequest
             {
@@ -316,10 +328,10 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(180, result);
+            Assert.Equal(kidsPrice, result);
         }
         [Fact]
-        public void CalculatePrice_ShouldReturn240_ForChildsAge25()
+        public void CalculatePrice_ShouldReturnStudentsPrice_ForStudentsAge25()
         {
             TicketRequest request = new TicketRequest
             {
@@ -332,11 +344,11 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(240, result);
+            Assert.Equal(studentsPrice, result);
         }
 
         [Fact]
-        public void CalculatePrice_ShouldReturn300_For64()
+        public void CalculatePrice_ShouldReturnNormalPrice_For64()
         {
             TicketRequest request = new TicketRequest
             {
@@ -349,12 +361,12 @@ namespace CinemaTicketSystemTests
             TicketPriceCalculator v = new TicketPriceCalculator();
             var result = v.CalculatePrice(request);
 
-            Assert.Equal(300, result);
+            Assert.Equal(normalPrice, result);
         }
         /////////////////////////////////Исключения/////////////////////////////////
         
         [Fact]
-        public void CalculatePrice_ShouldReturnException_ForNull()
+        public void CalculatePrice_ShouldReturnArgumentNullException_ForNull()
         {
             
             TicketPriceCalculator v = new TicketPriceCalculator();
@@ -363,7 +375,7 @@ namespace CinemaTicketSystemTests
         }
         //Возраст больше
         [Fact]
-        public void CalculatePrice_ShouldReturnException_ForAgeOver121()
+        public void CalculatePrice_ShouldReturnArgumentOutOfRangeException_ForAgeOver120()
         {
             TicketRequest request = new TicketRequest
             {
@@ -379,7 +391,7 @@ namespace CinemaTicketSystemTests
         }
 
         [Fact]
-        public void CalculatePrice_ShouldReturnException_ForAgeUnder0()
+        public void CalculatePrice_ShouldReturnArgumentOutOfRangeException_ForAgeUnder0()
         {
             TicketRequest request = new TicketRequest
             {
